@@ -8,7 +8,7 @@ namespace Clinic_Appointment_System_API.Data
         /// <summary>
         /// Initializes the database with initial data if it is empty.
         /// </summary>
-        /// <param name="context">The database context to be used for data access.</param>
+        /* <param name="context">The database context to be used for data access.</param>*/
         public static void Initialize(ClinicDbContext context)
         {
             // Check if the database has already been seeded

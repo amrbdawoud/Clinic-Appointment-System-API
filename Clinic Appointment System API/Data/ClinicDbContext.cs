@@ -18,30 +18,32 @@ public class ClinicDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         ConfigurePatient(modelBuilder);
-        ConfigureDoctor(modelBuilder);
         ConfigureClinic(modelBuilder);
         ConfigureAppointment(modelBuilder);
     }
 
     private void ConfigureAppointment(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Appointment>().HasOne(a => a.Patient);
-        modelBuilder.Entity<Appointment>().HasOne(a => a.Doctor);
-
+        modelBuilder.Entity<Appointment>()
+            .HasOne(a => a.Patient)
+            .WithOne(p => p.Appointment)
+            .HasForeignKey<Appointment>(p => p.PatientId);
     }
 
     private void ConfigureClinic(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Clinic>().HasOne(a => a.Appointment);
+        modelBuilder.Entity<Clinic>()
+        .HasOne(a => a.Appointment)
+        .WithOne(p => p.Clinic)
+        .HasForeignKey<Clinic>(p => p.AppointmentId);
 
     }
 
-    private void ConfigureDoctor(ModelBuilder modelBuilder)
-    {
-    }
 
     private void ConfigurePatient(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Patient>().HasOne(a => a.Appointment);
+        modelBuilder.Entity<Patient>().HasOne(a => a.Appointment)
+            .WithOne(p => p.Patient)
+            .HasForeignKey<Patient>(p => p.AppointmentId);
     }
 }

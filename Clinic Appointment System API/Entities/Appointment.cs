@@ -8,13 +8,14 @@ public class Appointment
     public int AppointmentId { get; set; }
     [Required]
     public int PatientId { get; set; }
-    public Patient? Patient { get; set; }
+    public Patient Patient { get; set; }
     [Required]
     public int DoctorId { get; set; }
     public required Doctor Doctor { get; set; }
 
     [Required]
     public int ClinicId { get; set; }
+    public Clinic Clinic { get; set; }
     [Required]
     public DateTime AppointmentDate { get; set; }
     [Required]
@@ -22,7 +23,6 @@ public class Appointment
     [Required]
     [EnumDataType(typeof(AppointmentStatus))]
     public AppointmentStatus Status { get; set; }
-    public string? Notes { get; set; }
 }
 
 
