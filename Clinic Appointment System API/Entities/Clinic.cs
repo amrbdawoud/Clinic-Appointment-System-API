@@ -10,6 +10,6 @@ namespace Clinic_Appointment_System_API.Entities
         public string Address { get; set; }
         public string PhoneNumber { get; set; }
         public int AppointmentId { get; set; }
-        public Appointment Appointment { get; set; }
+        public ICollection<Appointment> Appointments { get; set; }
     }
 }

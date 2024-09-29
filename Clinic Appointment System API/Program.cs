@@ -19,16 +19,19 @@ builder.Services.AddDbContext<ClinicDbContext>(options =>
 
 var app = builder.Build();
 
-/* not working
-// Initialize seed data
+/*// Initialize seed data
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<ClinicDbContext>();
+
+    // Apply any pending migrations
     context.Database.Migrate();
+
+    // Seed initial data after migration
     SeedInitialData.Initialize(context);
-}
-*/
+}*/
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

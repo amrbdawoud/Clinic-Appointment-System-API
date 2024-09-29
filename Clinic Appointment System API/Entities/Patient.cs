@@ -17,7 +17,7 @@ namespace Clinic_Appointment_System_API.Entities
         public string Email { get; set; }
         public string Address { get; set; }
         public int AppointmentId { get; set; }
-        public virtual Appointment Appointment { get; set; }
+        public ICollection<Appointment> Appointments { get; set; }
 
     }
     public enum Gender

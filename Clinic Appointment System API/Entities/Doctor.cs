@@ -13,5 +13,7 @@ namespace Clinic_Appointment_System_API.Entities
         public string Specialization { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
+        public int AppointmentId { get; set; }
+        public ICollection<Appointment> Appointments { get; set; }
     }
 }
