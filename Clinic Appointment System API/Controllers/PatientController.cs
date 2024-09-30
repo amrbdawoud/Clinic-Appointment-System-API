@@ -22,8 +22,43 @@ namespace Clinic_Appointment_System_API.Controllers
         {
             var patients = await _context.Patients.ToListAsync();
 
-            
+
             return Ok(patients);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<List<Patient>>> CreatePatient(Patient patient)
+        {
+            _context.Patients.Add(patient);
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.Clinics.ToListAsync());
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<List<Patient>>> UpdatePatient(int id, Patient updatedPatient)
+        {
+            var patient = await _context.Patients.FindAsync(id);
+            if (patient == null)
+            {
+                return NotFound();
+            }
+
+            // Update the patient properties
+            patient.FirstName = updatedPatient.FirstName;
+            patient.LastName = updatedPatient.LastName;
+            patient.DateOfBirth = updatedPatient.DateOfBirth;
+            patient.Gender = updatedPatient.Gender;
+            patient.PhoneNumber = updatedPatient.PhoneNumber;
+            patient.Email = updatedPatient.Email;
+            patient.Address = updatedPatient.Address;
+            patient.AppointmentId = updatedPatient.AppointmentId;
+            patient.Appointments = updatedPatient.Appointments;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.Patients.ToListAsync());
+        }
+
     }
 }

@@ -8,30 +8,30 @@ namespace Clinic_Appointment_System_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DoctorController : ControllerBase
+    public class ClinicController : ControllerBase
     {
         private readonly ClinicDbContext _context;
-        public DoctorController(ClinicDbContext context)
+        public ClinicController(ClinicDbContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Doctor>>> GetAllDoctors()
+        public async Task<ActionResult<List<Clinic>>> GetAllClinics()
         {
-            var doctors = await _context.Doctors.ToListAsync();
+            var clinics = await _context.Clinics.ToListAsync();
 
 
-            return Ok(doctors);
+            return Ok(clinics);
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Doctor>>> CreateDoctor(Doctor doctor)
+        public async Task<ActionResult<List<Clinic>>> CreateClinic(Clinic clinics)
         {
-            _context.Doctors.Add(doctor);
+            _context.Clinics.Add(clinics);
             await _context.SaveChangesAsync();
 
-            return Ok(await _context.Doctors.ToListAsync());
+            return Ok(await _context.Clinics.ToListAsync());
         }
     }
 }
